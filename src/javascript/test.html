@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AES-128-ECB JavaScript Demo</title>
+</head>
+<body>
+  <h1>AES-128-ECB JavaScript Demo</h1>
+
+  <div>
+    <label for="plaintext">明文：</label>
+    <input id="plaintext" type="text" value="hello world">
+  </div>
+
+  <div>
+    <label for="key">密钥：</label>
+    <input id="key" type="text" value="anyaeskey">
+  </div>
+
+  <button id="encrypt-btn">加密</button>
+
+  <div>
+    <label for="ciphertext">密文（16 进制字符串）：</label>
+    <input id="ciphertext" type="text" size="50">
+  </div>
+
+  <button id="decrypt-btn">解密</button>
+
+  <div>
+    <label for="decrypted">解密后的明文：</label>
+    <input id="decrypted" type="text" size="50">
+  </div>
+
+  <script src="https://cdn.bootcdn.net/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <script src="aes.js"></script>
+  <script>
+    // 获取页面元素
+    var plaintextInput = document.getElementById("plaintext");
+    var keyInput = document.getElementById("key");
+    var ciphertextInput = document.getElementById("ciphertext");
+    var decryptedInput = document.getElementById("decrypted");
+    var encryptBtn = document.getElementById("encrypt-btn");
+    var decryptBtn = document.getElementById("decrypt-btn");
+
+    // 添加“加密”按钮的点击事件处理器
+    encryptBtn.addEventListener("click", function () {
+      var plaintext = plaintextInput.value;
+      var key = keyInput.value;
+      var ciphertextHex = aesEncrypt(plaintext, key);
+      ciphertextInput.value = ciphertextHex;
+      decryptedInput.value = ""; // 重置解密后的明文输入框
+    });
+
+    // 添加“解密”按钮的点击事件处理器
+    decryptBtn.addEventListener("click", function () {
+      var ciphertextHex = ciphertextInput.value;
+      var key = keyInput.value;
+      var decryptedPlaintext = aesDecrypt(ciphertextHex, key);
+      decryptedInput.value = decryptedPlaintext;
+    });
+  </script>
+</body>
+</html>
