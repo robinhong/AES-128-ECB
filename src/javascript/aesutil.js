@@ -1,4 +1,8 @@
-//html 调用
+// 安装依赖库
+// cnpm install crypto-js --save
+
+import CryptoJS from "crypto-js";
+
 //密钥
 function aesKey(key) {
     return CryptoJS.enc.Utf8.parse(CryptoJS.MD5(key).toString().substring(8, 24).toUpperCase());
@@ -16,4 +20,10 @@ function aesDecrypt(data, key) {
     var ciphertext = CryptoJS.enc.Hex.parse(data);
     var decrypted = CryptoJS.AES.decrypt({ ciphertext: ciphertext }, aesKey(key), { mode: CryptoJS.mode.ECB });
     return decrypted.toString(CryptoJS.enc.Utf8);
+}
+
+export const AesUtil = {
+    aesKey,
+    aesEncrypt,
+    aesDecrypt
 }

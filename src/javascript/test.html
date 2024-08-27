@@ -32,7 +32,7 @@
     <input id="decrypted" type="text" size="50">
   </div>
 
-  <script src="https://cdn.bootcdn.net/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   <script src="aes.js"></script>
   <script>
     // 获取页面元素
@@ -49,7 +49,7 @@
       var key = keyInput.value;
       var ciphertextHex = aesEncrypt(plaintext, key);
       ciphertextInput.value = ciphertextHex;
-      decryptedInput.value = ""; // 重置解密后的明文输入框
+      decryptedInput.value = ""; //重置解密后的明文输入框
     });
 
     // 添加“解密”按钮的点击事件处理器

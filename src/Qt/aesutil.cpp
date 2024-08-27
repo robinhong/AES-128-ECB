@@ -1,23 +1,23 @@
-#include "aes.h"
+#include "aesutil.h"
 
-Aes::Aes()
+AesUtil::AesUtil()
 {
 }
 
-QString Aes::AesKey(const QString &key)
+QString AesUtil::AesKey(const QString &key)
 {
     QByteArray md5Key = QCryptographicHash::hash(key.toUtf8(), QCryptographicHash::Md5);
     return md5Key.toHex().mid(8, 16).toUpper();
 }
 
-QString Aes::AesEncrypt(const QString &data, const QString &key)
+QString AesUtil::AesEncrypt(const QString &data, const QString &key)
 {
     QAESEncryption encryption(QAESEncryption::AES_128, QAESEncryption::ECB, QAESEncryption::PKCS7);
     QByteArray enBA = encryption.encode(data.toUtf8(), AesKey(key).toUtf8());
     return enBA.toHex().toUpper();
 }
 
-QString Aes::AesDecrypt(const QString &data, const QString &key)
+QString AesUtil::AesDecrypt(const QString &data, const QString &key)
 {
     QAESEncryption encryption(QAESEncryption::AES_128, QAESEncryption::ECB, QAESEncryption::PKCS7);
     QByteArray enBA = QByteArray::fromHex(data.toUtf8());

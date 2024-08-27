@@ -1,14 +1,14 @@
-#ifndef AES_H
-#define AES_H
+#ifndef AESUTIL_H
+#define AESUTIL_H
 
 #include <QObject>
 #include <QCryptographicHash>
 #include "qaesencryption.h"
 
-class Aes
+class AesUtil
 {
 public:
-    Aes();
+    AesUtil();
 
     // 密钥
     static QString AesKey(const QString &key);
@@ -18,4 +18,4 @@ public:
     static QString AesDecrypt(const QString &data, const QString &key);
 };
 
-#endif // AES_H
+#endif // AESUTIL_H
